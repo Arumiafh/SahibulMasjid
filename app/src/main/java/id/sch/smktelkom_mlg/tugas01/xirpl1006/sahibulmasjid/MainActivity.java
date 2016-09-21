@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText etNama, etTanggal, etAlamat;
+    EditText etNama, etNamaPangil, etTanggal, etAlamat;
     //    RadioButton rbPr, rbLk;
     RadioGroup rg;
     CheckBox cbSBA, cbHAH, cbQ, cbSK;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         tvJudul = (TextView) findViewById(R.id.textViewJudul);
         tvHasil = (TextView) findViewById(R.id.textViewHasil);
         etNama = (EditText) findViewById(R.id.editTextNama);
+        etNamaPangil = (EditText) findViewById(R.id.editTextNamaPanggil);
         etAlamat = (EditText) findViewById(R.id.editTextAlamat);
         etTanggal = (EditText) findViewById(R.id.editTextTanggal);
         rg = (RadioGroup) findViewById(R.id.jenk);
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private void doProses() {
         if (isValid()) {
             String Nama = etNama.getText().toString();
+            String NamaPanggil = etNamaPangil.getText().toString();
             String Tanggal = etTanggal.getText().toString();
             String Alamat = etAlamat.getText().toString();
             String Kota = spKota.getSelectedItem().toString();
@@ -95,6 +98,30 @@ public class MainActivity extends AppCompatActivity {
             String Bidang = "";
             int startlen = Bidang.length();
 
+            tvJudul.setText("\n Data Diri \n");
+            tvHasil.setText(
+                    "Nama Lengkap     : " + Nama +
+                            "\nNama Panggilan : " + NamaPanggil +
+                            "\nTanggal lahir  : " + Tanggal +
+                            "\nTempat Lahir   : " + Kota + ", " + Provinsi +
+                            "\nAlamat         : " + Alamat);
+
+            if (rg.getCheckedRadioButtonId() != -1) {
+                RadioButton rb = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
+                JK = rb.getText().toString();
+                tvJK.setText(
+                        "Jenis Kelamin     : " + JK);
+            }
+            if (cbQ.isChecked()) Bidang += cbQ.getText().toString() + ", ";
+            if (cbSK.isChecked()) Bidang += cbSK.getText().toString();
+            if (cbHAH.isChecked()) Bidang += cbHAH.getText().toString() + ", ";
+            if (cbSBA.isChecked()) Bidang += cbSBA.getText().toString() + ", ";
+            if (Bidang.length() == startlen) {
+                tvBidang.setText("Anda Belum memilih Bidang");
+            } else {
+                tvBidang.setText(
+                        "Bidang yang diminati   : " + Bidang);
+            }
         }
     }
 
@@ -116,9 +143,6 @@ public class MainActivity extends AppCompatActivity {
         }
         if (Tanggal.isEmpty()) {
             etTanggal.setError("Tanggal Lahir belum diisi");
-            valid = false;
-        } else if (Tanggal.length() != 8) {
-            etTanggal.setError("Format Tanggal Lahir ddmmyy");
             valid = false;
         } else {
             etTanggal.setError(null);
