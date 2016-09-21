@@ -176,6 +176,17 @@
             android:checked="false"
             android:text="Seni Kaligrafi" />
 
+        <TextView
+            android:id="@+id/textViewTelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No. Telp / Whatsapp" />
+
+        <EditText
+            android:id="@+id/editTextTelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/buttonOK"
             android:layout_width="177dp"

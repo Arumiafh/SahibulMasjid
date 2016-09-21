@@ -18,7 +18,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText etNama, etNamaPangil, etTanggal, etAlamat;
+    EditText etNama, etNamaPangil, etTanggal, etAlamat, etTelp;
     //    RadioButton rbPr, rbLk;
     RadioGroup rg;
     CheckBox cbSBA, cbHAH, cbQ, cbSK;
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         etNamaPangil = (EditText) findViewById(R.id.editTextNamaPanggil);
         etAlamat = (EditText) findViewById(R.id.editTextAlamat);
         etTanggal = (EditText) findViewById(R.id.editTextTanggal);
+        etTelp = (EditText) findViewById(R.id.editTextTelp);
         rg = (RadioGroup) findViewById(R.id.jenk);
         cbSBA = (CheckBox) findViewById(R.id.checkBoxSBA);
         cbSK = (CheckBox) findViewById(R.id.checkBoxSK);
@@ -92,19 +93,21 @@ public class MainActivity extends AppCompatActivity {
             String NamaPanggil = etNamaPangil.getText().toString();
             String Tanggal = etTanggal.getText().toString();
             String Alamat = etAlamat.getText().toString();
+            String Telp = etTelp.getText().toString();
             String Kota = spKota.getSelectedItem().toString();
             String Provinsi = spProvinsi.getSelectedItem().toString();
             String JK = "";
             String Bidang = "";
             int startlen = Bidang.length();
 
-            tvJudul.setText("\n Data Diri \n");
+            tvJudul.setText("\n DATA DIRI PENDAFTAR \n");
             tvHasil.setText(
                     "Nama Lengkap     : " + Nama +
-                            "\nNama Panggilan : " + NamaPanggil +
-                            "\nTanggal lahir  : " + Tanggal +
-                            "\nTempat Lahir   : " + Kota + ", " + Provinsi +
-                            "\nAlamat         : " + Alamat);
+                            "\nNama Panggilan   : " + NamaPanggil +
+                            "\nTanggal lahir    : " + Tanggal +
+                            "\nTempat Lahir     : " + Kota + ", " + Provinsi +
+                            "\nAlamat            : " + Alamat +
+                            "\nNo.Telp / WA   : " + Telp);
 
             if (rg.getCheckedRadioButtonId() != -1) {
                 RadioButton rb = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
