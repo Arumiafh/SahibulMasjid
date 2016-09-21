@@ -132,8 +132,10 @@ public class MainActivity extends AppCompatActivity {
         boolean valid = true;
 
         String Nama = etNama.getText().toString();
+        String NamaPanggil = etNamaPangil.getText().toString();
         String Tanggal = etTanggal.getText().toString();
         String Alamat = etAlamat.getText().toString();
+        String Telp = etTelp.getText().toString();
 
         if (Nama.isEmpty()) {
             etNama.setError("Nama belum diisi");
@@ -144,6 +146,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             etNama.setError(null);
         }
+
+        if (NamaPanggil.isEmpty()) {
+            etNamaPangil.setError("Nama panggilan belum diisi");
+            valid = false;
+        } else {
+            etNamaPangil.setError(null);
+        }
+
         if (Tanggal.isEmpty()) {
             etTanggal.setError("Tanggal Lahir belum diisi");
             valid = false;
@@ -157,6 +167,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             etNama.setError(null);
         }
+
+        if (Telp.isEmpty()) {
+            etTelp.setError("No. Telp / WA belum diisi");
+            valid = false;
+        } else {
+            etTelp.setError(null);
+        }
+
         return valid;
     }
 
