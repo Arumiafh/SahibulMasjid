@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -92,37 +91,9 @@ public class MainActivity extends AppCompatActivity {
             String Alamat = etAlamat.getText().toString();
             String Kota = spKota.getSelectedItem().toString();
             String Provinsi = spProvinsi.getSelectedItem().toString();
-
-            tvJudul.setText("\n Data Diri Pendaftar \n");
-            tvHasil.setText(
-                    "Nama               : " + Nama + "\n" +
-                            "Tempat Lahir   : " + Kota + ", " + Provinsi + "\n" +
-                            "Tanggal Lahir  : " + Tanggal + "\n" +
-                            "Alamat             : " + Alamat + "\n"
-            );
-
             String JK = "";
-            if (rg.getCheckedRadioButtonId() != -1) {
-                RadioButton rb = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
-                JK = rb.getText().toString();
-            }
-            if (JK == "") {
-                tvJK.setText("Anda belum memilih data Jenis Kelamin");
-            } else {
-                tvJK.setText("Jenis Kelamin   : " + JK);
-            }
-
             String Bidang = "";
             int startlen = Bidang.length();
-            if (cbSBA.isChecked()) Bidang += cbSBA.getText() + ", ";
-            if (cbHAH.isChecked()) Bidang += cbHAH.getText() + ", ";
-            if (cbSK.isChecked()) Bidang += cbSK.getText() + ", ";
-            if (cbQ.isChecked()) Bidang += cbQ.getText();
-            if (Bidang.length() == startlen) {
-                tvBidang.setText("Anda belum memilih Bidang yang Anda minati \n");
-            } else {
-                tvBidang.setText("Bidang yang Anda minati    : " + Bidang);
-            }
 
         }
     }
@@ -137,20 +108,12 @@ public class MainActivity extends AppCompatActivity {
         if (Nama.isEmpty()) {
             etNama.setError("Nama belum diisi");
             valid = false;
-        } else if (Nama.length() != 3) {
+        } else if (Nama.length() <= 3) {
             etNama.setError("Nama minimal 3 digit");
             valid = false;
         } else {
             etNama.setError(null);
         }
-
-        if (Alamat.isEmpty()) {
-            etAlamat.setError("Alamat belum diisi");
-            valid = false;
-        } else {
-            etNama.setError(null);
-        }
-
         if (Tanggal.isEmpty()) {
             etTanggal.setError("Tanggal Lahir belum diisi");
             valid = false;
@@ -160,8 +123,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             etTanggal.setError(null);
         }
-        return valid;
 
+        if (Alamat.isEmpty()) {
+            etAlamat.setError("Alamat belum diisi");
+            valid = false;
+        } else {
+            etNama.setError(null);
+        }
+        return valid;
     }
 
 }
